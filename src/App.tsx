@@ -1,9 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
 import { styled } from "styled-components";
+import Box from "./components/Box";
 
 function App() {
-  return <Container></Container>;
+  return (
+    <Container>
+      <Box />
+    </Container>
+  );
 }
 
 export default App;
