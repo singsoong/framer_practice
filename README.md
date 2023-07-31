@@ -223,3 +223,8 @@ return (
 const x = useMotionValue(0);
 const scale = useTransform(x, [-300, 0, 300], [2, 1, 0.1]);
 ```
+
+### useScroll
+
+- scrollX, scrollY: 픽셀 단위로 스크롤 값을 가져올 수 있음
+- scrollXProgress, scrollYProgress: 총 스크롤 할 수 있는 값의 비율을 리턴 (최소값 0, 최대값 1)
