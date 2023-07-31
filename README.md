@@ -41,3 +41,49 @@ const myVars = {
 
 <Box variants={myVars} initial="start" animate="end" />;
 ```
+
+- Orchestration
+  - delayChildren: 모든 자식들에게 delay 거는 속성
+  - staggerChildren: 각 자식마다 순차적으로 실행할 때 사용하는 속성
+
+```js
+// Variants
+const boxVariants = {
+  start: {
+    opacity: 1,
+    scale: 0,
+  },
+  end: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const circleVariants = {
+  start: {
+    opacity: 0,
+    y: 20,
+  },
+  end: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+function App() {
+  return (
+    <Container>
+      <Box variants={boxVariants} initial="start" animate="end">
+        <Circle variants={circleVariants} />
+        <Circle variants={circleVariants} />
+        <Circle variants={circleVariants} />
+        <Circle variants={circleVariants} />
+      </Box>
+    </Container>
+  );
+}
+```
