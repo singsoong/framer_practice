@@ -11,7 +11,16 @@ const boxVariants = {
 function App() {
   return (
     <Container>
-      <Box variants={boxVariants} whileHover="hover" whileTap="tap"></Box>
+      <Box
+        drag
+        variants={boxVariants}
+        whileHover="hover"
+        whileTap="tap"
+        whileDrag={{
+          backgroundColor: "rgba(46, 204, 113)",
+          transition: { duration: 2 },
+        }}
+      />
     </Container>
   );
 }

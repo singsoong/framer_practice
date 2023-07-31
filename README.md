@@ -104,3 +104,11 @@ function App() {
   );
 }
 ```
+
+- drag 속성을 줘서 컴포넌트를 drag 할 수 있음
+
+```js
+<Box drag variants={boxVariants} whileHover="hover" whileTap="tap" />
+```
+
+> 컴포넌트 애니메이션에 color를 줄 때 `blue`, `black`과 같이 string 형태로 주면 transition이 동작안함. 값으로 입력해주어야 함. (`rgba(1, 2, 3)`과 같이.)
