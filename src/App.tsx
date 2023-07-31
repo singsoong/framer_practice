@@ -2,16 +2,16 @@ import React from "react";
 import { styled } from "styled-components";
 import { motion } from "framer-motion";
 
+// Variants
+const myVars = {
+  start: { scale: 0 },
+  end: { scale: 1, rotateZ: 360, transition: { type: "spring", delay: 0.3 } },
+};
+
 function App() {
   return (
     <Container>
-      <Box
-        transition={{ type: "spring", delay: 0.3 }}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1, rotateZ: 360 }}
-      >
-        .
-      </Box>
+      <Box variants={myVars} initial="start" animate="end" />
     </Container>
   );
 }

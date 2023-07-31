@@ -29,3 +29,15 @@ const Box = styled(motion.div)``;
   animate={{ scale: 1, rotateZ: 360 }}
 />
 ```
+
+- Variants
+
+```js
+// Variants
+const myVars = {
+  start: { scale: 0 },
+  end: { scale: 1, rotateZ: 360, transition: { type: "spring", delay: 0.3 } },
+};
+
+<Box variants={myVars} initial="start" animate="end" />;
+```
