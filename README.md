@@ -87,3 +87,20 @@ function App() {
   );
 }
 ```
+
+- whileHover, whileTap과 같은 props를 사용하여 특정 조건에서의 애니메이션을 처리할 수 있음.
+
+```js
+const boxVariants = {
+  hover: { scale: 1.5, rotateZ: 90 },
+  tap: { borderRadius: "150px", scale: 1 },
+};
+
+function App() {
+  return (
+    <Container>
+      <Box variants={boxVariants} whileHover="hover" whileTap="tap"></Box>
+    </Container>
+  );
+}
+```

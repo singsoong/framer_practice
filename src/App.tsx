@@ -4,40 +4,14 @@ import { motion } from "framer-motion";
 
 // Variants
 const boxVariants = {
-  start: {
-    opacity: 1,
-    scale: 0,
-  },
-  end: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const circleVariants = {
-  start: {
-    opacity: 0,
-    y: 20,
-  },
-  end: {
-    opacity: 1,
-    y: 0,
-  },
+  hover: { scale: 1.5, rotateZ: 90 },
+  tap: { borderRadius: "150px", scale: 1 },
 };
 
 function App() {
   return (
     <Container>
-      <Box variants={boxVariants} initial="start" animate="end">
-        <Circle variants={circleVariants} />
-        <Circle variants={circleVariants} />
-        <Circle variants={circleVariants} />
-        <Circle variants={circleVariants} />
-      </Box>
+      <Box variants={boxVariants} whileHover="hover" whileTap="tap"></Box>
     </Container>
   );
 }
@@ -57,16 +31,7 @@ const Box = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   width: 300px;
   height: 300px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-`;
-
-const Circle = styled(motion.div)`
   background-color: white;
-  width: 100px;
-  height: 100px;
   border-radius: 50px;
-  place-self: center;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 `;
