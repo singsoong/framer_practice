@@ -115,7 +115,7 @@ function App() {
 
 - drag constraints: dragConstraints 속성을 통해 드래그 영역을 제한할 수 있음
   - 범위를 지정할 때 top, left, bottom, right와 같이 값을 입력할 수 있음
-  - element의 ref를 가져와서 dragConstraints의 값으로 주어 제한할 수도 있음음
+  - element의 ref를 가져와서 dragConstraints의 값으로 주어 제한할 수도 있음
 
 ```js
 // value
@@ -189,4 +189,37 @@ function App() {
     transition: { duration: 2 },
   }}
 />
+```
+
+### MotionValues
+
+- `useMotionValue`를 사용해 값을 선언하고, 이 값을 추적할 element와 연결할 수 있음
+- 추적할 때에는 `useMotionValueEvent`를 사용
+- x의 값이 변할 때 해당 컴포넌트는 리렌더링 되는 방식이 아님, 단순히 x의 값만 바뀜
+
+```js
+const x = useMotionValue(0);
+
+useMotionValueEvent(x, "change", (value) => {
+  console.log(value);
+});
+
+return (
+  <Container>
+    <Box style={{ x }} drag="x" dragSnapToOrigin />
+  </Container>
+);
+```
+
+### useTransform
+
+- `useTransform`은 추적할 값에 따라 값을 변경시켜줌
+- 예를 들어, x의 좌표에 따라 scale의 값이 변경되었으면 함
+  - x값이 -300일 때 2, 0일 때 1, 300일 때 0.1이 리턴되었으면 함
+- 첫번째 파라미터로 추적할 값, 두번째 파라미터로 추적할 값의 기준값, 세번째 파라미터로 기준값에 도달했을 때 할당할 값을 입력
+  - 따라서 input과 output의 개수가 같아야함
+
+```js
+const x = useMotionValue(0);
+const scale = useTransform(x, [-300, 0, 300], [2, 1, 0.1]);
 ```
