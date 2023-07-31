@@ -112,3 +112,81 @@ function App() {
 ```
 
 > 컴포넌트 애니메이션에 color를 줄 때 `blue`, `black`과 같이 string 형태로 주면 transition이 동작안함. 값으로 입력해주어야 함. (`rgba(1, 2, 3)`과 같이.)
+
+- drag constraints: dragConstraints 속성을 통해 드래그 영역을 제한할 수 있음
+  - 범위를 지정할 때 top, left, bottom, right와 같이 값을 입력할 수 있음
+  - element의 ref를 가져와서 dragConstraints의 값으로 주어 제한할 수도 있음음
+
+```js
+// value
+<Box
+  drag
+  dragConstraints={{ top: -100, bottom: 100, left: -100, right: 100 }}
+  dragSnapToOrigin
+  variants={boxVariants}
+  whileHover="hover"
+  whileTap="tap"
+  whileDrag={{
+    backgroundColor: "rgba(46, 204, 113)",
+    transition: { duration: 2 },
+  }}
+/>;
+
+// ref
+function App() {
+  const bigBoxRef = useRef < HTMLDivElement > null;
+  return (
+    <Container>
+      <BigBox ref={bigBoxRef}>
+        <Box
+          drag
+          dragConstraints={bigBoxRef}
+          dragSnapToOrigin
+          variants={boxVariants}
+          whileHover="hover"
+          whileTap="tap"
+          whileDrag={{
+            backgroundColor: "rgba(46, 204, 113)",
+            transition: { duration: 2 },
+          }}
+        />
+      </BigBox>
+    </Container>
+  );
+}
+```
+
+- dragSnapToOrigin 속성을 주면 드래그 후 제자리로 돌아감
+
+```js
+<Box
+  drag
+  dragConstraints={bigBoxRef}
+  dragSnapToOrigin
+  variants={boxVariants}
+  whileHover="hover"
+  whileTap="tap"
+  whileDrag={{
+    backgroundColor: "rgba(46, 204, 113)",
+    transition: { duration: 2 },
+  }}
+/>
+```
+
+- dragElastic: 드래그할 때, 당기는 힘을 조절할 수 있음 (default: 0.5)
+
+```js
+<Box
+  drag
+  dragConstraints={bigBoxRef}
+  dragSnapToOrigin
+  dragElastic={1}
+  variants={boxVariants}
+  whileHover="hover"
+  whileTap="tap"
+  whileDrag={{
+    backgroundColor: "rgba(46, 204, 113)",
+    transition: { duration: 2 },
+  }}
+/>
+```
