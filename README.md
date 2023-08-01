@@ -20,6 +20,12 @@ $ yarn add framer-motion
 const Box = styled(motion.div)``;
 ```
 
+or
+
+```js
+<Box as={motion.div} />
+```
+
 - Basic Animation
 
 ```js
@@ -286,3 +292,53 @@ const boxVar = {
   ) : null}
 </AnimatePresence>;
 ```
+
+- custom: 각 animation 컴포넌트에 대해 동적 variants를 적용시킬 수 있는 속성
+
+```js
+// Variants
+const boxVar = {
+  invisible: (isBack: boolean) => {
+    return {
+      x: isBack ? -300 : 300,
+      opacity: 0,
+      scale: 0,
+    };
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: (isBack: boolean) => {
+    return {
+      x: isBack ? 300 : -300,
+      opacity: 0,
+      scale: 0,
+      transition: {
+        duration: 0.3,
+      },
+    };
+  },
+};
+
+<AnimatePresence custom={back}>
+  <Box
+    custom={back}
+    variants={boxVar}
+    initial="invisible"
+    animate="visible"
+    exit="exit"
+    key={visible}
+  >
+    {visible}
+  </Box>
+</AnimatePresence>;
+```
+
+- isBack이 `true`와 `false`에 따라 다른 애니메이션을 적용
+
+> Element의 key를 바꿔주면 React는 element가 사라졌다고 판단한다.
