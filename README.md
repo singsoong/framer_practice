@@ -342,3 +342,30 @@ const boxVar = {
 - isBack이 `true`와 `false`에 따라 다른 애니메이션을 적용
 
 > Element의 key를 바꿔주면 React는 element가 사라졌다고 판단한다.
+
+### 📄 Layout
+
+- Element에 layout 속성을 부여하면 해당 element의 css 속성이 변경 될 때 마다 animation을 부여한다.
+- CSS의 변화가 자동으로 animate 되는 것
+
+```js
+<Container onClick={toggleClicked}>
+  <Box
+    style={{
+      justifyContent: clicked ? "center" : "flex-start",
+      alignItems: clicked ? "center" : "flex-start",
+    }}
+  >
+    <Circle layout />
+  </Box>
+</Container>
+```
+
+- 각 element에 layoutId를 부여하여 element를 연결하고 두 element 사이의 css 변화를 animation으로 연결시켜준다
+
+```js
+<Container onClick={toggleClicked}>
+  <Box>{clicked && <Circle layoutId="circle" />} </Box>
+  <Box>{!clicked && <Circle layoutId="circle" />}</Box>
+</Container>
+```
