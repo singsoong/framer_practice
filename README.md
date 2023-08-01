@@ -255,3 +255,34 @@ const scale = useTransform(x, [-300, 0, 300], [2, 1, 0.1]);
   strokeWidth="2"
 />
 ```
+
+### 📄 AnimatePresence
+
+- AnimatePresence를 사용해서 React 트리에서 컴포넌트가 생성되고 제거될 때의 animation을 부여할 수 있음
+- exit 속성을 통해 종료될 때 animation을 설정할 수 있음
+
+```js
+// Variants
+const boxVar = {
+  start: {
+    opacity: 0,
+    scale: 0,
+  },
+  end: {
+    opacity: 1,
+    scale: 1,
+    rotateZ: 360,
+  },
+  leaving: {
+    opacity: 0,
+    scale: 0,
+    y: 100,
+  },
+};
+
+<AnimatePresence>
+  {isShow ? (
+    <Box variants={boxVar} initial="start" animate="end" exit="leaving" />
+  ) : null}
+</AnimatePresence>;
+```
