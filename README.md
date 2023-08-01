@@ -1,14 +1,14 @@
 # Framer-motion
 
-## Installation
+## 📌 Installation
 
 ```
 $ yarn add framer-motion
 ```
 
-## Usage
+## 📌 Usage
 
-- Declaration
+### 📄 Declaration
 
 ```js
 <motion.div>Box</motion.div>
@@ -30,7 +30,7 @@ const Box = styled(motion.div)``;
 />
 ```
 
-- Variants
+### 📄 Variants
 
 ```js
 // Variants
@@ -42,9 +42,10 @@ const myVars = {
 <Box variants={myVars} initial="start" animate="end" />;
 ```
 
-- Orchestration
-  - delayChildren: 모든 자식들에게 delay 거는 속성
-  - staggerChildren: 각 자식마다 순차적으로 실행할 때 사용하는 속성
+### 📄 Orchestration
+
+- delayChildren: 모든 자식들에게 delay 거는 속성
+- staggerChildren: 각 자식마다 순차적으로 실행할 때 사용하는 속성
 
 ```js
 // Variants
@@ -104,6 +105,8 @@ function App() {
   );
 }
 ```
+
+### 📄 Drag
 
 - drag 속성을 줘서 컴포넌트를 drag 할 수 있음
 
@@ -191,7 +194,7 @@ function App() {
 />
 ```
 
-### MotionValues
+### 📄 MotionValues
 
 - `useMotionValue`를 사용해 값을 선언하고, 이 값을 추적할 element와 연결할 수 있음
 - 추적할 때에는 `useMotionValueEvent`를 사용
@@ -211,7 +214,7 @@ return (
 );
 ```
 
-### useTransform
+### 📄 useTransform
 
 - `useTransform`은 추적할 값에 따라 값을 변경시켜줌
 - 예를 들어, x의 좌표에 따라 scale의 값이 변경되었으면 함
@@ -228,3 +231,27 @@ const scale = useTransform(x, [-300, 0, 300], [2, 1, 0.1]);
 
 - scrollX, scrollY: 픽셀 단위로 스크롤 값을 가져올 수 있음
 - scrollXProgress, scrollYProgress: 총 스크롤 할 수 있는 값의 비율을 리턴 (최소값 0, 최대값 1)
+
+### 📄 SVG Animation
+
+- motion의 path태그를 사용하여 animation을 부여할 수 있음
+
+```js
+  <motion.path initial={...} animate={...} />
+```
+
+- 각 animation의 transition을 따로따로 부여할 수 있음
+
+```js
+<motion.path
+  variants={svgVar}
+  initial="start"
+  animate="end"
+  transition={{
+    default: { duration: 3 },
+    fill: { duration: 2, delay: 3 },
+  }}
+  stroke="white"
+  strokeWidth="2"
+/>
+```
